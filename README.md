@@ -1,5 +1,7 @@
 # AgriClimate Analytics - Visualització de Dades Agrícoles i Climàtiques
 
+### ATENCIÓ: Arxius molt pesants han estat substituïts per arxius buits per poder pujar-los a Git.
+
 ## Descripció del Projecte
 
 **Projecte acadèmic** de visualització de dades que integra múltiples fonts institucionals 
