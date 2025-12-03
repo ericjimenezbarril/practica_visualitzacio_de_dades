@@ -1,0 +1,676 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[catalan]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{float}
+
+% Configuració de colors
+\definecolor{agrigreen}{RGB}{34, 139, 34}
+\definecolor{climateblue}{RGB}{0, 102, 204}
+
+% Configuració de l'encapçalament
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Projecte de Visualització de Dades}
+\lhead{AgriClimate Analytics}
+\rfoot{Pàgina \thepage}
+
+% Configuració dels títols
+\titleformat{\section}{\Large\bfseries\color{agrigreen}}{\thesection.}{1em}{}
+\titleformat{\subsection}{\large\bfseries\color{agrigreen!80}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{agrigreen!60}}{\thesubsubsection}{1em}{}
+
+\title{\textbf{\Huge AgriClimate Analytics} \\ 
+\vspace{0.5cm}
+\Large Selecció i Justificació del Conjunt de Dades \\
+\vspace{0.3cm}
+\large Projecte de Visualització de Dades}
+\author{Eric Jiménez Barril}
+\date{Desembre 2025}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\vspace{0.5cm}
+
+\begin{center}
+\large\textit{``Les dades no menteixen: el clima està canviant, \\
+i l'agricultura n'és testimoni i protagonista''}
+\end{center}
+
+\vspace{1cm}
+
+\section*{Context Fictici i Motivació Acadèmica}
+
+\textbf{Nota preliminar:} Aquest document es presenta en un context \textit{fictici} amb finalitat exclusivament acadèmica. L'escenari empresarial descrit serveix com a marc narratiu per justificar la selecció de dades i el disseny de visualitzacions, però no representa una empresa real ni projectes professionals en curs. Tot i que el discurs desenvolupat hauria de dispossar d'un volum molt més elevat d’informació i una infraestructura analítica robusta per ser possible, en realitat el conjunt de dades utilitzat és limitat i condicionat per l’abast del projecte acadèmic, així com per les fonts públiques obertes disponibles, però la idea era tenir una motivació per impulsar el projecte.
+ 
+
+\vspace{0.5cm}
+
+\subsection*{L'Escenari: AgriClimate Analytics}
+
+Imaginem que som els fundadors d'\textbf{AgriClimate Analytics}, una startup de consultoria agro-tecnològica especialitzada en intel·ligència climàtica per al sector agrícola. La nostra proposta de valor consisteix a proporcionar a cooperatives agràries, grans productors i institucions governamentals una plataforma d'anàlisi que integri dades climàtiques, productives i socioeconòmiques per prendre decisions informades sobre:
+
+\begin{itemize}[leftmargin=2cm]
+    \item \textbf{Selecció de cultius resilients} adaptats a escenaris climàtics futurs.
+    \item \textbf{Gestió de recursos} (aigua, fertilitzants, pesticides) optimitzada segons tendències climàtiques.
+    \item \textbf{Avaluació d'inversions} en infraestructures de regadiu i tecnologia agrícola.
+    \item \textbf{Predicció de rendiments} considerant variables ambientals i econòmiques.
+    \item \textbf{Anàlisi de vulnerabilitat} de regions agrícoles davant el canvi climàtic.
+\end{itemize}
+
+Aquest projecte de visualització constitueix el nostre \textit{proof-of-concept} per demostrar als inversors i clients potencials que disposem de les capacitats tècniques i analítiques necessàries per transformar dades brutes en insights accionables.
+
+\section{Justificació de la Selecció del Conjunt de Dades}
+
+\subsection{Motivació Personal i Professional (Fictícia)}
+
+La decisió de crear AgriClimate Analytics neix d'una experiència personal: el meu avi era agricultor de secà a l'interior de Catalunya i, durant els últims anys de la seva activitat, va patir les conseqüències directes de sequeres recurrents i onades de calor que van diezmar les collites. Aquesta vivència m'ha impulsat a aplicar les meves competències en ciència i anàlisi de dades per abordar un problema real i urgent: \textbf{com pot l'agricultura adaptar-se al canvi climàtic de manera sostenible i rendible}.
+
+Des d'un punt de vista professional, he identificat una oportunitat de mercat: les dades climàtiques i agràries existeixen (moltes d'elles de lliure accés), però estan \textbf{fragmentades}, provenen de fonts heterogènies i requereixen competències tècniques avançades per integrar-les i interpretar-les. AgriClimate Analytics vol ser el pont entre aquestes dades i els decisors del sector agrícola.
+
+\subsection{Selecció de les Fonts de Dades}
+
+Per construir el nostre \textit{proof-of-concept}, hem integrat dades de sis fonts institucionals d'alta credibilitat:
+
+\begin{enumerate}[leftmargin=2cm]
+    \item \textbf{FAOSTAT} (FAO - Organització de les Nacions Unides per a l'Alimentació i l'Agricultura): \\
+    \url{https://www.fao.org/faostat/en/#data}
+    
+    \item \textbf{Climate Change Indicators Dashboard} (Fons Monetari Internacional): \\
+    \url{https://climatedata.imf.org/datasets/4063314923d74187be9596f10d034914_0}
+    
+    \item \textbf{Climate Change Knowledge Portal} (Banc Mundial): \\
+    \url{https://climateknowledgeportal.worldbank.org/download-data}
+    
+    \item \textbf{World Development Indicators} (Banc Mundial): \\
+    \url{https://databank.worldbank.org/source/world-development-indicators}
+    
+    \item \textbf{GDP Data} (Datahub.io): \\
+    \url{https://datahub.io/core/gdp}
+    
+    \item \textbf{Countries Geographic Coordinates} (Google Developers Public Data): \\
+    \url{https://developers.google.com/public-data/docs/canonical/countries_csv}
+\end{enumerate}
+
+Aquestes fonts garanteixen \textbf{rigor metodològic}, \textbf{cobertura global i geoespacial}, \textbf{actualització regular} i \textbf{accés obert}, elements essencials per a un projecte amb vocació d'escalabilitat.
+
+\newpage
+
+\section{Rellevància del Conjunt de Dades en el Context}
+
+\subsection{Actualitat de les Dades}
+
+Les dades integrades cobreixen períodes històrics extensos (1961-2024) però inclouen informació actualitzada fins a 2024, la qual cosa les fa extremadament rellevants en el context actual de:
+
+\begin{itemize}[leftmargin=2cm]
+    \item \textbf{Crisi climàtica accelerada:} L'any 2024 ha estat un dels més càlids registrats. Les dades de temperatura i precipitació del Banc Mundial (sèrie CRU TS 4.09) proporcionen sèries temporals fins a l'actualitat.
+    \item \textbf{Inseguretat alimentària global:} La FAO actualitza anualment les seves estadístiques de producció, emissions i ús del sòl. Les dades integrades inclouen informació fins a 2023-2024 segons la variable.
+    \item \textbf{Transició agroecològica:} Els indicadors del Banc Mundial sobre ús de fertilitzants, regadiu i percentatge de terra agrícola són clau per avaluar la sostenibilitat del model productiu actual.
+\end{itemize}
+
+\subsection{Importància per al Col·lectiu Agrícola}
+
+Aquest conjunt de dades és especialment rellevant per a diversos col·lectius:
+
+\begin{enumerate}[leftmargin=2cm]
+    \item \textbf{Petits i mitjans agricultors:} Necessiten entendre com les tendències climàtiques afectaran els seus cultius tradicionals i quines alternatives tenen.
+    
+    \item \textbf{Cooperatives agràries:} Han de planificar inversions col·lectives (regadiu, maquinària, assegurances) basant-se en projeccions climàtiques i econòmiques.
+    
+    \item \textbf{Administracions públiques:} Requereixen informació per dissenyar polítiques agràries adaptatives i ajuts focalitzats en regions vulnerables.
+    
+    \item \textbf{Sector financer:} Bancs i asseguradores necessiten avaluar riscos climàtics en inversions agrícoles.
+    
+    \item \textbf{Investigadors i ONG:} Treballen en projectes de desenvolupament rural sostenible i adaptació climàtica.
+\end{enumerate}
+
+\subsection{Perspectiva de Gènere}
+
+La integració de dades ha tingut en compte explícitament la \textbf{perspectiva de gènere}:
+
+\begin{itemize}[leftmargin=2cm]
+    \item Les dades de FAOSTAT inclouen indicadors d'ocupació agrícola \textbf{desagregats per sexe} (\textit{Employment\_Indicators\_Agriculture\_E\_Sexs.csv}), permetent analitzar la participació de dones en el sector.
+    
+    \item El dataset final \texttt{agri\_country\_year\_df\_processed.csv} conté les variables:
+    \begin{itemize}
+        \item \texttt{female\_population\_\%}: Percentatge de dones en la població total.
+        \item \texttt{female\_share\_of\_employment\_in\_agriculture}: Proporció de dones ocupades en agricultura.
+    \end{itemize}
+    
+    \item Aquesta desagregació permet visualitzar \textbf{desigualtats de gènere} en l'accés a l'ocupació agrícola i estudiar com el canvi climàtic pot afectar diferencialment dones i homes en contextos rurals.
+    
+    \item És especialment rellevant en països en desenvolupament on les dones són responsables del 60-80\% de la producció d'aliments però tenen menys accés a recursos (terra, crèdit, tecnologia).
+\end{itemize}
+
+\section{Complexitat del Conjunt de Dades}
+
+\subsection{Dimensions del Dataset}
+
+El projecte ha generat \textbf{dos datasets finals processats} amb dimensions considerables:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lrr}
+\toprule
+\textbf{Dataset} & \textbf{Registres} & \textbf{Variables} \\
+\midrule
+\texttt{agri\_country\_year\_df\_processed.csv} & 10.653 & 31 \\
+\texttt{agri\_production\_and\_prices\_df\_processed.csv} & 617.291 & 7 \\
+\midrule
+\textbf{Total} & \textbf{627.944} & \textbf{35 úniques (3 comparties)} \\
+\bottomrule
+\end{tabular}
+\caption{Dimensions dels datasets finals processats}
+\end{table}
+
+Amb \textbf{més de 627.000 registres} i \textbf{35 variables úniques}, el conjunt de dades compleix àmpliament el requisit de complexitat per a un projecte de visualització avançat.
+
+\subsection{Tipologia de Variables}
+
+El conjunt de dades combina múltiples tipus de variables, oferint riquesa analítica:
+
+\subsubsection{Variables Categòriques}
+
+\begin{itemize}[leftmargin=2cm]
+    \item \textbf{Geogràfiques:} \texttt{Country}, \texttt{ISO3} (196 països diferents)
+    \item \textbf{Temporals:} \texttt{Year} (1961-2024, 64 anys)
+    \item \textbf{Productives:} \texttt{Commodity} (més de 300 cultius i productes ramaders)
+\end{itemize}
+
+\subsubsection{Variables Quantitatives Contínues}
+
+\begin{itemize}[leftmargin=2cm]
+    \item \textbf{Ambientals:}
+    \begin{itemize}
+        \item \texttt{surface\_temperature\_change\_celsius}: Canvi de temperatura respecte la línia base
+        \item \texttt{prec\_mm\_per\_year}: Precipitació anual en mm
+        \item \texttt{mean\_annual\_tas\_deg\_celsius}: Temperatura mitjana anual
+    \end{itemize}
+    
+    \item \textbf{Superfícies (en hectàrees):}
+    \begin{itemize}
+        \item \texttt{land\_area\_ha}, \texttt{agricultural\_land\_ha}, \texttt{cropland\_ha}
+        \item \texttt{permanent\_meadows\_and\_pastures\_ha}, \texttt{area\_harvested\_ha}
+    \end{itemize}
+    
+    \item \textbf{Emissions (en kilotones CO$_2$ eq):}
+    \begin{itemize}
+        \item \texttt{emissions\_soils\_CO2eq\_AR5\_kt}
+        \item \texttt{emissions\_rice\_cultivation\_agricultural\_CO2eq\_AR5\_kt}
+        \item \texttt{emissions\_synthetic\_fertilizers\_CO2eq\_AR5\_kt}
+        \item \texttt{emissions\_crop\_residues\_CO2eq\_AR5\_kt}
+        \item \texttt{emissions\_total\_livestock\_CO2eq\_AR5\_kt}
+        \item \texttt{emissions\_total\_agriculture\_CO2eq\_AR5\_kt}
+    \end{itemize}
+    
+    \item \textbf{Inputs agrícoles:}
+    \begin{itemize}
+        \item \texttt{pesticide\_agricultural\_use\_t} / \texttt{pesticide\_agricultural\_use\_kt}
+        \item \texttt{fertilizers\_per\_area\_of\_cropland\_kg\_ha}
+        \item \texttt{fertilizers\_per\_capita\_kg\_cap}
+        \item \texttt{fertilizers\_per\_value\_of\_agri\_prod\_g\_Intdollar}
+    \end{itemize}
+    
+    \item \textbf{Producció:}
+    \begin{itemize}
+        \item \texttt{production\_kt}: Producció en kilotones
+        \item \texttt{yield\_kg\_ha}: Rendiment per hectàrea
+    \end{itemize}
+    
+    \item \textbf{Econòmiques:}
+    \begin{itemize}
+        \item \texttt{GDP\_usd}: PIB en dòlars americans
+        \item \texttt{agriculture\_share\_gdp\_percent}: Pes de l'agricultura en el PIB
+        \item \texttt{agriculture\_annual\_growth\_percent}: Creixement anual del sector
+    \end{itemize}
+    
+    \item \textbf{Demogràfiques:}
+    \begin{itemize}
+        \item \texttt{total\_population\_No}
+        \item \texttt{female\_population\_\%}, \texttt{rural\_population\_\%}
+        \item \texttt{female\_share\_of\_employment\_in\_agriculture}
+        \item \texttt{total\_share\_of\_employment\_in\_agriculture}
+    \end{itemize}
+    
+    \item \textbf{Geogràfiques (coordenades):}
+    \begin{itemize}
+        \item \texttt{latitude}, \texttt{longitude}
+    \end{itemize}
+\end{itemize}
+
+\subsection{Complexitat de les Relacions}
+
+La complexitat del dataset no resideix només en el volum, sinó en les \textbf{relacions multidimensionals} que permet explorar:
+
+\begin{enumerate}[leftmargin=2cm]
+    \item \textbf{Sèries temporals:} Evolució de qualsevol variable al llarg de 64 anys (1961-2024).
+    
+    \item \textbf{Anàlisi geogràfica:} Comparació entre 196 països amb coordenades per crear mapes interactius.
+    
+    \item \textbf{Correlacions clima-producció:} Relacionar temperatura/precipitació amb rendiments de cultius específics.
+    
+    \item \textbf{Anàlisi d'emissions:} Descomposició de les fonts d'emissions agrícoles per país i any.
+    
+    \item \textbf{Eficiència de recursos:} Estudiar la relació entre inputs (fertilitzants, pesticides) i outputs (producció, rendiments).
+    
+    \item \textbf{Dimensions socioeconòmiques:} Vincular variables agràries amb PIB, ocupació i demografia.
+    
+    \item \textbf{Perspectiva de gènere:} Analitzar com les tendències climàtiques i econòmiques afecten diferencialment homes i dones.
+\end{enumerate}
+
+\subsection{Processos de Transformació i Enginyeria de Variables}
+
+Durant el procés de neteja i integració (documentat a \texttt{data\_integration.html} i \texttt{data\_cleaning.html}), s'han aplicat transformacions avançades:
+
+\begin{itemize}[leftmargin=2cm]
+    \item \textbf{Imputació de valors nuls:} Aplicació de KNN Imputer per mantenir la coherència espacial i temporal.
+    \item \textbf{Agregació de fertilitzants:} Suma de N, P$_2$O$_5$ i K$_2$O per crear una variable composta.
+    \item \textbf{Normalització d'emissions:} Agregació de diferents fonts d'emissions agrícoles.
+    \item \textbf{Enriquiment geogràfic:} Addició de latitud/longitud per cada país.
+    \item \textbf{Conversió d'unitats:} Harmonització de tones, kilotones, hectàrees, etc.
+    \item \textbf{Creació de ràtios:} Variables derivades com fertilitzants per hectàrea, per càpita i per valor de producció.
+\end{itemize}
+
+Aquesta complexitat en el preprocessament garanteix que els datasets finals siguin \textbf{robustos, coherents i analíticament útils}.
+
+\subsection{Originalitat en la Gestió de Valors Faltants: Imputació Intel·ligent i Adaptada}
+
+Un dels aspectes més originals i tècnicament sofisticats del projecte rau en l'\textbf{estratègia multicapa d'imputació de valors faltants}. Enlloc d'aplicar una única tècnica genèrica, hem desenvolupat un enfocament adaptatiu que considera la naturalesa de cada variable i la qualitat de les dades disponibles.
+
+\subsubsection{Anàlisi Prèvia: Decisió Informada sobre Imputació vs. Eliminació}
+
+Abans d'imputar qualsevol variable, s'ha realitzat una \textbf{anàlisi exhaustiva de qualitat de dades}:
+
+\begin{itemize}[leftmargin=2cm]
+    \item \textbf{Percentatge de valors nuls:} Variables amb més del 80\% de valors faltants (com l'indicador 21111 d'ocupació) han estat \textit{eliminades} perquè la imputació introduiria més soroll que valor.
+    
+    \item \textbf{Consistència interna:} Variables amb incoherències lògiques (per exemple, on $\text{total} \neq \text{female} + \text{male}$) han estat corregides o eliminades segons la gravetat.
+    
+    \item \textbf{Continuïtat temporal:} Variables amb discontinuïtats extremes no s'han imputat amb models predictius per evitar crear tendències artificials.
+\end{itemize}
+
+Aquest procés de \textit{tria conscient} demostra una comprensió profunda de les limitacions dels mètodes d'imputació i garanteix que només s'apliquen on són realment beneficiosos.
+
+\subsubsection{Tècniques d'Imputació Aplicades}
+
+Per a les variables amb qualitat suficient, s'han aplicat tècniques d'imputació \textbf{adaptades al context}:
+
+\textbf{1. Interpolació Temporal Lineal per País}
+
+Per a variables econòmiques i demogràfiques amb evolució gradual (PIB agrícola, percentatge de terra irrigada, ocupació), s'ha aplicat interpolació lineal \textit{dins de cada país}. Això garanteix que:
+\begin{itemize}
+    \item Les tendències històriques es mantenen.
+    \item No es generen valors impossibles (per exemple, percentatges negatius).
+    \item Els valors imputats són coherents amb el context nacional.
+\end{itemize}
+
+\textbf{2. Regressió Lineal per Tendències Temporals}
+
+Per a sèries productives (producció de cultius, superfície collida), quan hi ha almenys dos anys amb valors positius, s'ha aplicat regressió lineal basada en l'any. Els valors predits es limiten a $\geq 0$ per evitar resultats físicament impossibles.
+
+\textbf{3. Imputació Basada en Proporcions Anuals per Commodity}
+
+Aquesta és la tècnica més \textbf{innovadora} del projecte. Per a variables productives com $A$ (superfície), $P$ (producció) i $Y$ (rendiment), on existeix una relació matemàtica coneguda:
+
+\[
+P = A \times \frac{Y}{1000}
+\]
+
+S'ha implementat un sistema que:
+\begin{itemize}
+    \item Utilitza les mitjanes anuals per cultiu ($\mu_A^{kt}$, $\mu_P^{kt}$, $\mu_Y^{kt}$) per mantenir proporcions coherents.
+    \item Imputa valors faltants mantenint la relació dimensional entre les tres variables.
+    \item Garanteix consistència física: si falta $A$ però tenim $P$ i $Y$, calculem $A = \frac{P \times 1000}{Y}$.
+\end{itemize}
+
+Aquesta tècnica és especialment potent perquè respecta les \textbf{lleis agronòmiques fonamentals} i no genera valors arbitraris.
+
+\textbf{4. Normalització de Proporcions Complementàries}
+
+Per a variables que han de sumar una constant (per exemple, $\text{rural\_population} + \text{urban\_population} = 1$), s'ha aplicat una normalització proporcional per garantir consistència lògica:
+
+\[
+\text{rural\_normalitzat} = \frac{\text{rural}}{\text{rural} + \text{urban}}
+\]
+
+\textbf{5. Imputació per KNN (K-Nearest Neighbors)}
+
+Per a variables amb dependències espacials (temperatura, precipitació), s'ha considerat l'ús de KNN Imputer que utilitza la similitud entre països (basada en latitud, longitud i altres indicadors climàtics) per imputar valors faltants. Aquest mètode és especialment adequat perquè països geogràficament propers tendeixen a tenir patrons climàtics similars.
+
+\subsubsection{Resultat: Dataset Complet i Coherent}
+
+Després d'aplicar aquesta estratègia multicapa, els datasets finals presenten:
+\begin{itemize}
+    \item \textbf{0\% de valors nuls} en variables productives.
+    \item \textbf{Consistència dimensional} entre variables relacionades.
+    \item \textbf{Respecte per les lleis físiques i agronòmiques}.
+    \item \textbf{Transparència metodològica}: Cada decisió d'imputació està documentada al notebook \texttt{data\_cleaning.html}.
+\end{itemize}
+
+Aquesta aproximació demostra que la imputació de dades no és un procés mecànic, sinó una tasca que requereix \textbf{comprensió del domini}, \textbf{creativitat metodològica} i \textbf{rigor analític}. És un dels elements més originals i valuosos del projecte.
+
+\section{Originalitat del Conjunt de Dades}
+
+\subsection{Evitació de Datasets Clàssics}
+
+El projecte s'allunya deliberadament de datasets sobreutilitzats (Titanic, Iris, MNIST, COVID-19) per treballar amb dades \textbf{reals, actuals i amb impacte social}. La temàtica de l'\textbf{adaptació climàtica de l'agricultura} és:
+
+\begin{itemize}[leftmargin=2cm]
+    \item \textbf{Pertinent:} El canvi climàtic i la seguretat alimentària són reptes globals del segle XXI.
+    \item \textbf{Poc explotada en visualització:} Tot i existir dades, hi ha poques visualitzacions integrades que combinin clima, producció i economia agrícola.
+    \item \textbf{Interdisciplinària:} Connecta ciències ambientals, economia, agronomia i anàlisi de dades.
+\end{itemize}
+
+\subsection{Integració Multi-Font: L'Originalitat com a Procés}
+
+L'originalitat principal del projecte resideix en la \textbf{integració de sis fonts institucionals independents}:
+
+\begin{enumerate}[leftmargin=2cm]
+    \item \textbf{FAOSTAT:} 8 categories de dades (Emissions, Ocupació, Cobertura del Sòl, Fertilitzants, Ús del Sòl, Pesticides, Població, Producció i Preus).
+    
+    \item \textbf{IMF Climate Data:} Indicadors globals de temperatura superficial.
+    
+    \item \textbf{World Bank Climate Portal:} Sèries temporals de temperatura i precipitació amb resolució 0.5° (CRU TS 4.09).
+    
+    \item \textbf{World Bank Development Indicators:} Variables econòmiques i estructurals del sector agrícola.
+    
+    \item \textbf{Datahub GDP:} Contextualització macroeconòmica.
+    
+    \item \textbf{Google Developers Public Data:} Coordenades geogràfiques (latitud/longitud) per a visualitzacions cartogràfiques i anàlisis espacials.
+\end{enumerate}
+
+Cap d'aquestes fonts, per separat, permet respondre les preguntes que plantegem. La integració és el que genera valor afegit.
+
+\subsection{Enriquiment i Transformació}
+
+A més de la integració, el projecte ha enriquit les dades originals:
+
+\begin{itemize}[leftmargin=2cm]
+    \item \textbf{Geolocalització:} Addició de coordenades geogràfiques (latitud/longitud) obtingudes de Google Developers Public Data per permetre visualitzacions cartogràfiques. A partir del codi ISO3 de cada país, s'han assignat coordenades del centroid geogràfic, proporcionant una localització aproximada del "centre" de cada país. Aquesta informació és essencial per crear mapes interactius, anàlisis espacials i correlacions geogràfiques que relacionin clima, producció i ubicació física dels països.
+    
+    \item \textbf{Agregacions temporals:} Creació de mitjanes mòbils i tendències per suavitzar la variabilitat interanual.
+    
+    \item \textbf{Indicadors compostos:}
+    \begin{itemize}
+        \item Ràtio emissions totals / PIB agrícola (intensitat de carboni)
+        \item Ràtio fertilitzants / rendiments (eficiència productiva)
+        \item Índex de vulnerabilitat climàtica (combinant temperatura, precipitació i dependència econòmica de l'agricultura)
+    \end{itemize}
+    
+    \item \textbf{Desagregació per gènere:} Explotació de variables específiques per estudiar desigualtats.
+\end{itemize}
+
+\subsection{Revisió de Visualitzacions Existents}
+
+S'ha realitzat una recerca de visualitzacions similars:
+
+\begin{itemize}[leftmargin=2cm]
+    \item \href{https://ourworldindata.org}{Our World in Data}: Té visualitzacions sobre emissions agrícoles i temperatura global, però no integra producció de cultius específics ni desagregació per gènere.
+    
+    \item \href{https://www.fao.org/faostat}{FAO Data Portal}: Ofereix gràfics estàtics per variable, però no permet anàlisis creuades amb dades climàtiques del Banc Mundial.
+    
+    \item \href{https://climateknowledgeportal.worldbank.org/}{Climate Change Knowledge Portal}: Se centra en indicadors climàtics, però no inclou dades productives ni econòmiques.
+\end{itemize}
+
+
+En conclusió, no he pogut trobar cap plataforma pública que integri aquestes cinc fonts amb el nivell de detall i riquesa de variables que hem aconseguit. Aquesta és la nostra proposta de valor diferencial.
+
+\subsection{Dataset com a Evolució}
+
+El nostre conjunt de dades pot considerar-se una evolució de datasets previs:
+
+\begin{itemize}[leftmargin=2cm]
+    \item És una actualització de projectes anteriors de la FAO i el Banc Mundial, incorporant dades fins a 2024.
+    \item És un enriquiment d'aquests datasets individuals, creant un producte integrat.
+    \item És una adaptació específica per al cas d'ús d'AgriClimate Analytics.
+\end{itemize}
+
+\newpage
+
+\section{Qüestions que Respondrem amb la Visualització}
+
+\subsection{Formulació de Preguntes d'Investigació}
+
+Basant-nos en els punts anteriors (rellevància, complexitat, originalitat), hem identificat cinc grans preguntes d'investigació que guiaran el disseny de les visualitzacions:
+
+\subsubsection{Pregunta 1: Com ha evolucionat la relació entre temperatura global i producció agrícola?}
+
+\textbf{Adequació al dataset:} El dataset conté sèries temporals de temperatura (\texttt{surface\_temperature\_change\_celsius}, \texttt{mean\_annual\_tas\_deg\_celsius}) i producció de més de 300 cultius (\texttt{production\_kt}, \texttt{yield\_kg\_ha}) durant 1961-2024.
+
+\textbf{Variables implicades:}
+\begin{itemize}
+    \item \textit{Fet a estudiar:} Rendiments agrícoles (\texttt{yield\_kg\_ha})
+    \item \textit{Dimensió que el mesura:} Temps (\texttt{Year}), Temperatura (\texttt{mean\_annual\_tas\_deg\_celsius}), Cultiu (\texttt{Commodity}), País (\texttt{Country})
+\end{itemize}
+
+\textbf{Originalitat:} Tot i existir visualitzacions sobre temperatura global i producció agrícola per separat, poques mostren la correlació específica per cultiu i regió geogràfica. La nostra visualització permetrà identificar quins cultius són més vulnerables i en quines regions.
+
+\subsubsection{Pregunta 2: Quines regions són més vulnerables al canvi climàtic des d'una perspectiva agroalimentària?}
+
+\textbf{Adequació al dataset:} Disposem de coordenades geogràfiques, indicadors climàtics, dependència econòmica de l'agricultura (\texttt{agriculture\_share\_gdp\_percent}) i emissions agrícoles.
+
+\textbf{Variables implicades:}
+\begin{itemize}
+    \item \textit{Fet a estudiar:} Vulnerabilitat climàtica (índex compost)
+    \item \textit{Dimensions que la mesuren:}
+    \begin{itemize}
+        \item Canvi de temperatura (\texttt{surface\_temperature\_change\_celsius})
+        \item Variació de precipitació (\texttt{prec\_mm\_per\_year})
+        \item Dependència econòmica (\texttt{agriculture\_share\_gdp\_percent})
+        \item Intensitat d'emissions (\texttt{emissions\_total\_agriculture\_CO2eq\_AR5\_kt})
+        \item Població rural (\texttt{rural\_population\_\%})
+    \end{itemize}
+\end{itemize}
+
+\textbf{Originalitat:} Crearem un \textbf{índex de vulnerabilitat climàtica agrícola} que no existeix en altres visualitzacions, combinant dimensions ambientals, econòmiques i socials.
+
+\subsubsection{Pregunta 3: Com ha evolucionat la intensitat de carboni de l'agricultura a nivell global?}
+
+\textbf{Adequació al dataset:} Tenim emissions desagregades per font (\texttt{emissions\_soils\_CO2eq\_AR5\_kt}, \texttt{emissions\_synthetic\_fertilizers\_CO2eq\_AR5\_kt}, etc.) i valor econòmic del sector (\texttt{agriculture\_share\_gdp\_percent}, \texttt{GDP\_usd}).
+
+\textbf{Variables implicades:}
+\begin{itemize}
+    \item \textit{Fet a estudiar:} Intensitat de carboni (emissions / PIB agrícola)
+    \item \textit{Dimensions que la mesuren:}
+    \begin{itemize}
+        \item Emissions totals (\texttt{emissions\_total\_agriculture\_CO2eq\_AR5\_kt})
+        \item Descomposició per font (sòls, arrossars, fertilitzants, ramaderia)
+        \item PIB agrícola (calculat com \texttt{GDP\_usd} $\times$ \texttt{agriculture\_share\_gdp\_percent})
+        \item Evolució temporal (\texttt{Year})
+    \end{itemize}
+\end{itemize}
+
+\textbf{Originalitat:} Aquesta mètrica no està disponible en visualitzacions públiques de la FAO ni del Banc Mundial. Permetrà identificar països que estan \textit{desacoblant} el creixement agrícola de les emissions.
+
+\subsubsection{Pregunta 4: Quina és la relació entre ús de fertilitzants, rendiments i emissions?}
+
+\textbf{Adequació al dataset:} Disposem de variables d'input (\texttt{fertilizers\_per\_area\_of\_cropland\_kg\_ha}), output (\texttt{yield\_kg\_ha}) i externalitat negativa (\texttt{emissions\_synthetic\_fertilizers\_CO2eq\_AR5\_kt}).
+
+\textbf{Variables implicades:}
+\begin{itemize}
+    \item \textit{Fet a estudiar:} Eficiència productiva i ambiental
+    \item \textit{Dimensions que la mesuren:}
+    \begin{itemize}
+        \item Input: \texttt{fertilizers\_per\_area\_of\_cropland\_kg\_ha}
+        \item Output: \texttt{yield\_kg\_ha} (per cultiu)
+        \item Externalitat: \texttt{emissions\_synthetic\_fertilizers\_CO2eq\_AR5\_kt}
+        \item Context econòmic: \texttt{agriculture\_annual\_growth\_percent}
+    \end{itemize}
+\end{itemize}
+
+\textbf{Originalitat:} Permetrà visualitzar la \textbf{frontera d'eficiència} entre països que aconsegueixen alts rendiments amb baixos inputs i emissions (model sostenible) vs. països amb alta intensitat d'inputs i emissions (model intensiu).
+
+\subsubsection{Pregunta 5: Com afecta el canvi climàtic a la participació de les dones en l'agricultura?}
+
+\textbf{Adequació al dataset:} Variables de gènere (\texttt{female\_share\_of\_employment\_in\_agriculture}, \texttt{female\_population\_\%}) combinades amb indicadors climàtics i productius.
+
+\textbf{Variables implicades:}
+\begin{itemize}
+    \item \textit{Fet a estudiar:} Desigualtat de gènere en ocupació agrícola
+    \item \textit{Dimensions que la mesuren:}
+    \begin{itemize}
+        \item \texttt{female\_share\_of\_employment\_in\_agriculture}
+        \item \texttt{total\_share\_of\_employment\_in\_agriculture}
+        \item \texttt{surface\_temperature\_change\_celsius}
+        \item \texttt{agriculture\_share\_gdp\_percent}
+        \item \texttt{rural\_population\_\%}
+    \end{itemize}
+\end{itemize}
+
+\textbf{Originalitat:} És una pregunta \textbf{poc explorada} en visualitzacions públiques. Permetrà identificar si les regions amb major impacte climàtic presenten també major desigualtat de gènere en l'accés a l'ocupació agrícola.
+
+\renewcommand{\arraystretch}{1.35} % més espai entre files
+\setlength{\tabcolsep}{6pt}       % més espai horitzontal
+
+\begin{longtable}{p{6.6cm} p{7cm} p{2.5cm}}
+\caption{Diccionari de Variables dels Datasets Finals} \\
+\toprule
+\textbf{Variable} & \textbf{Significat} & \textbf{Rol} \\
+\midrule
+\endfirsthead
+
+\multicolumn{3}{c}{\textit{(Continuació de la pàgina anterior)}} \\
+\toprule
+\textbf{Variable} & \textbf{Significat} & \textbf{Rol} \\
+\midrule
+\endhead
+
+\midrule
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+\texttt{Country} & Nom del país & Dimensió \\
+\texttt{ISO3} & Codi ISO3 del país & Dimensió \\
+\texttt{Year} & Any de registre (1961–2024) & Dimensió \\
+\texttt{latitude} & Latitud del país & Dimensió \\
+\texttt{longitude} & Longitud del país & Dimensió \\
+\texttt{Commodity} & Tipus de cultiu & Dimensió \\
+
+\midrule
+\texttt{land\_area\_ha} & Superfície total del país (ha) & Dimensió \\
+\texttt{agricultural\_land\_ha} & Terra agrícola total (ha) & Dimensió \\
+\texttt{cropland\_ha} & Terra cultivada (ha) & Dimensió \\
+\texttt{permanent\_meadows\_and\_pastures\_ha} & Pastures permanents (ha) & Dimensió \\
+\texttt{area\_harvested\_ha} & Superfície collida per cultiu (ha) & Dimensió \\
+
+\midrule
+\texttt{surface\_temperature\_change\_celsius} & Canvi de temperatura respecte a la línia base (°C) & Fet \\
+\texttt{mean\_annual\_tas\_deg\_celsius} & Temperatura mitjana anual (°C) & Fet \\
+\texttt{prec\_mm\_per\_year} & Precipitació anual (mm) & Fet \\
+
+\midrule
+\texttt{pesticide\_agricultural\_use\_t} & Ús de pesticides (tones) & Fet \\
+\texttt{pesticide\_agricultural\_use\_kt} & Ús de pesticides (kilotones) & Fet \\
+
+\midrule
+\texttt{fertilizers\_} & Fertilitzants per... & \\
+\texttt{per\_area\_of\_cropland\_kg\_ha} &  hectàrea (kg/ha) & Fet \\
+\texttt{per\_capita\_kg\_cap} & càpita (kg/persona) & Fet \\
+\texttt{per\_value\_of\_agri\_prod\_g\_Intdollar} & unitat de valor de producció (g/Int\$) & Fet \\
+
+\midrule
+\texttt{emissions\_-\_CO2eq\_AR5\_kt} & Emissions en kt de CO\textsubscript{2}eq &  \\
+\texttt{soils} & dels sòls agrícoles & Fet \\
+\texttt{rice\_cultivation\_agricultural} 
+& del cultiu d'arròs & Fet \\
+\texttt{synthetic\_fertilizers} 
+& per fertilitzants sintètics & Fet \\
+\texttt{crop\_residues} 
+& de residus de cultius & Fet \\
+\texttt{total\_livestock} 
+& totals de la ramaderia & Fet \\
+\texttt{total\_agriculture} 
+& totals de l'agricultura & Fet \\
+
+\midrule
+\texttt{production\_kt} & Producció del cultiu (kilotones) & Fet \\
+\texttt{yield\_kg\_ha} & Rendiment per hectàrea (kg/ha) & Fet \\
+
+\midrule
+\texttt{total\_population\_No} & Població total & Dimensió \\
+\texttt{female\_population\_\%} & Percentatge de dones a la població & Dimensió \\
+\texttt{rural\_population\_\%} & Percentatge de població rural & Dimensió \\
+
+\midrule
+\texttt{share\_of\_employment\_in\_agriculture} & (\%) &  \\
+\texttt{female\_} & Dones ocupades al sector agrícola & Fet \\
+\texttt{total\_} & Ocupació agrícola sobre el total & Fet \\
+
+\midrule
+\texttt{GDP\_usd} & PIB del país (USD) & Dimensió \\
+\texttt{agriculture\_share\_gdp\_percent} & Pes de l’agricultura al PIB (\%) & Fet \\
+\texttt{agriculture\_annual\_growth\_percent} & Creixement anual del sector agrícola (\%) & Fet \\
+
+\end{longtable}
+
+\subsection{Adequació de les Preguntes al Dataset}
+
+Les cinc preguntes formulades compleixen els següents criteris d'adequació:
+
+\begin{enumerate}[leftmargin=2cm]
+    \item \textbf{Cobertura de variables:} Cada pregunta utilitza entre 5 i 10 variables del dataset, aprofitant la seva riquesa.
+    
+    \item \textbf{Combinació de dimensions:} Totes les preguntes combinen dimensions temporals, geogràfiques i temàtiques.
+    
+    \item \textbf{Tipus de dades:} S'aprofiten variables categòriques (país, cultiu) i quantitatives (temperatura, emissions, rendiments).
+    
+    \item \textbf{Complexitat analítica:} Les preguntes requereixen agregacions, càlculs de ràtios, correlacions i creació d'índexs compostos.
+    
+    \item \textbf{Originalitat:} Cap d'aquestes preguntes ha estat plantejada amb aquest nivell d'integració en visualitzacions públiques existents.
+\end{enumerate}
+
+\newpage
+
+\section*{Conclusions}
+
+Aquesta primera part del projecte de visualització de dades s'ha concebut des del principi amb una vocació d'aplicabilitat real, encara que s'emmarca en un escenari fictici amb finalitat acadèmica. La selecció del conjunt de dades ha estat guiada per cinc principis:
+
+\begin{enumerate}[leftmargin=2cm]
+    \item \textbf{Rellevància social:} Abordar el repte del canvi climàtic en l'agricultura, un problema urgent i global.
+    
+    \item \textbf{Complexitat tècnica:} Integrar més de 627.000 registres i 38 variables de sis fonts institucionals (que originalment eren prop de 5 milions amb més de 60 columnes).
+    
+    \item \textbf{Originalitat:} Crear un producte analític que no existeix en plataformes públiques.
+    
+    \item \textbf{Perspectiva de gènere:} Incorporar una perspectiva de gènere en l'anàlisi.
+    
+    \item \textbf{Potencial de visualització:} Formular preguntes que permetin crear visualitzacions innovadores i informatives per la pròxima part.
+\end{enumerate}
+
+El \textit{proof-of-concept} d'AgriClimate Analytics demostra que disposem de les capacitats tècniques per transformar dades brutes en intel·ligència accionable per al sector agrícola. Les visualitzacions que desenvoluparem en la següent fase del projecte tindran el potencial de ser utilitzades per cooperatives agràries en la planificació de cultius, administracions públiques en el disseny de polítiques adaptatives, investigadors en l'estudi de la vulnerabilitat climàtica o inclús sector financer en l'avaluació de riscos agrícoles.
+
+\vspace{1cm}
+
+\noindent\rule{\textwidth}{0.5pt}
+
+\subsection*{Referències de les Fonts de Dades}
+
+\begin{enumerate}[leftmargin=1cm, label={[\arabic*]}]
+    \item FAO. \textit{FAOSTAT Statistical Database}. \url{https://www.fao.org/faostat/en/#data}. Accés: Desembre 2025.
+    
+    \item International Monetary Fund. \textit{Climate Change Indicators Dashboard}. \url{https://climatedata.imf.org/datasets/4063314923d74187be9596f10d034914_0}. Accés: Desembre 2025.
+    
+    \item World Bank Group. \textit{Climate Change Knowledge Portal - Historical Data}. \url{https://climateknowledgeportal.worldbank.org/download-data}. Sèrie CRU TS 4.09 (1901-2024). Accés: Desembre 2025.
+    
+    \item World Bank Group. \textit{World Development Indicators}. \url{https://databank.worldbank.org/source/world-development-indicators}. Accés: Desembre 2025.
+    
+    \item Datahub.io. \textit{Country, Regional and World GDP - Gross Domestic Product}. \url{https://datahub.io/core/gdp}. Accés: Desembre 2025.
+    
+    \item Google Developers. \textit{Countries Geographic Coordinates - Public Data}. \url{https://developers.google.com/public-data/docs/canonical/countries_csv}. Accés: Desembre 2025.
+\end{enumerate}
+
+\end{document}
+

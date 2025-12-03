@@ -1,0 +1,36 @@
+foastat data:
+https://www.fao.org/faostat/en/#data
+
+
+public country data: https://datahub.io/core/gdp
+
+dades de longitud i latitud: https://developers.google.com/public-data/docs/canonical/countries_csv?hl=es-419
+
+climate data:
+
+File: Indicator_3_1_Climate_Indicators_Annual_Mean_Global_Surface_Temperature_577579683071085080
+Source: https://climatedata.imf.org/datasets/4063314923d74187be9596f10d034914_0/about
+
+
+File: cru-x0.5_timeseries_tas,pr_timeseries_annual_1901-2024_mean_historical_cru_ts4.09_mean
+Source:  https://climateknowledgeportal.worldbank.org/download-data
+: global_countries/cru-x0.5/timeseries/tas & pr/annual
+
+
+Source: https://databank.worldbank.org/source/world-development-indicators
+Variables: 
+	- Database: World Development Indicators
+	- Country: all
+	- Time: all
+	- Series:
+		- NV.AGR.TOTL.ZS — agricultura % del PIB
+		- NV.AGR.TOTL.KD — valor añadido agrícola
+		- AG.LND.IRIG.AG.ZS — riego %
+		- AG.LND.AGRI.ZS — tierra agrícola %
+		- AG.LND.ARBL.ZS — tierra cultivable
+		- AG.LND.ARBL.HA.PC — hectáreas por persona
+
+File: 2c7a1d0b-5ed3-4bf6-b44a-161ff5e1f3fb_Series - Metadata
+File: 2c7a1d0b-5ed3-4bf6-b44a-161ff5e1f3fb_Data
+
+
